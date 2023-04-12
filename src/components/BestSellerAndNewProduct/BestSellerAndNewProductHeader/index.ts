@@ -1,0 +1,2 @@
+import BestSellerAndNewProductHeader from './BestSellerAndNewProductHeader'
+export default BestSellerAndNewProductHeader;

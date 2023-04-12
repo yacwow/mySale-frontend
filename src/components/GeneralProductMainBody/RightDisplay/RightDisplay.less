@@ -1,0 +1,55 @@
+.container {
+    width: 1000px;
+    padding-right: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 20px 0;
+    position: relative;
+
+    .titleRight {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        right: 0;
+        top: -18px;
+        // height: 33px;
+
+        li {
+            font-size: 12px;
+            line-height: 16px;
+            padding: 0 5px;
+            border-right: 1px solid;
+            color: #0072b7;
+        }
+
+        .active {
+            color: black;
+            font-weight: 100;
+        }
+    }
+    
+
+}
+.displayPicture{
+    // border:10px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+        /* 如果最后一行是3个元素 */
+        .list:last-child:nth-child(4n + 3) {
+            // border:10px solid black;
+            margin-right: calc(25.5%);
+            // margin-right: calc(48% + 8% / 3);
+        }
+    
+        /* 如果最后一行是2个元素 */
+        .list:last-child:nth-child(4n + 2) {
+            // border:10px solid black;
+            margin-right: calc(50.6%);
+        }
+}

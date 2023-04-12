@@ -1,0 +1,74 @@
+.reactSlickButton .slick-next,
+.reactSlickButton .slick-prev {
+  width: 60px;
+  height: 60px;
+
+  /* background-color: black; */
+  position: absolute;
+
+  /* border:10px solid black; */
+  z-index: 99999;
+}
+
+.reactSlickButton .slick-next {
+  top: calc(50% - 30px);
+  right: -20px;
+}
+
+.reactSlickButton .slick-prev {
+  /* border:1000px solid black; */
+  top: calc(50% - 30px);
+
+  /* right:10px; */
+  left: 0;
+  z-index: 999;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  /* font-size: 55px;
+  border: 10px solid black; */
+  /* color: black; */
+  /* background: url('/rightArrow.png') no-repeat;
+  width:60px; */
+  /* background-size: auto; */
+  font-family: unset;
+  font-size: unset;
+  line-height: unset;
+  opacity: unset;
+  color: unset;
+  -webkit-font-smoothing: unset;
+  -moz-osx-font-smoothing: unset;
+
+}
+
+.slick-prev {
+  background: url('/rightArrow.png') no-repeat;
+  width: 60px;
+}
+
+.slick-next {
+  background: url('/leftArrow.png') no-repeat;
+  width: 60px;
+}
+
+.reactSlickButton .slick-dots {
+  position: absolute;
+  bottom: 20px;
+}
+
+.reactSlickButton .slick-active {
+  color: black;
+}
+
+.reactSlickButton {
+  position: relative;
+  /* background-image: cover; */
+  width: 100%;
+
+  /* border:100px solid black; */
+}
+
+.reactSlickButton .slick-slide {
+  height: 100%;
+}

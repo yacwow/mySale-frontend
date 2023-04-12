@@ -1,0 +1,2 @@
+import UpdateUserInfoInitialValue from './UpdateUserInfoInitialValue'
+export default UpdateUserInfoInitialValue;

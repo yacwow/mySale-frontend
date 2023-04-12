@@ -1,0 +1,96 @@
+.reactSlickButton_bestSellerAndNewProduct .slick-next,
+.slick-prev {
+  width: 60px;
+  height: 60px;
+
+  /* background-color: black; */
+  position: absolute;
+
+  /* border:10px solid black; */
+  z-index: 99999;
+}
+
+.reactSlickButton_bestSellerAndNewProduct .slick-next {
+  top: calc(50% - 30px);
+  right: 10px;
+}
+
+.reactSlickButton_bestSellerAndNewProduct .slick-prev {
+  /* border:1000px solid black; */
+  top: calc(50% - 30px);
+
+  /* right:10px; */
+  left: 10px;
+  z-index: 999;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  /* font-size: 55px;
+    border: 10px solid black; */
+  /* color: black; */
+  /* background: url('/rightArrow.png') no-repeat;
+    width:60px; */
+  /* background-size: auto; */
+  font-family: unset;
+  font-size: unset;
+  line-height: unset;
+  opacity: unset;
+  color: unset;
+  -webkit-font-smoothing: unset;
+  -moz-osx-font-smoothing: unset;
+
+}
+
+.slick-prev {
+  background: url('/rightArrow.png') no-repeat;
+  width: 60px;
+}
+
+.slick-next {
+  background: url('/leftArrow.png') no-repeat;
+  width: 60px;
+}
+
+/* .slick-prev::before, .slick-next::before{
+    font-size: 55px;
+    color:rgb(16 185 223);
+    background:url('/public/leftArrow.png') no-repeat;
+  } */
+
+/* .slick-dots{
+    position: absolute;
+    bottom: 20px;
+  }
+  .slick-active{
+    color:black;
+  } */
+.reactSlickButton_bestSellerAndNewProduct {
+  /* display: flex;
+    justify-content: space-between; */
+  position: relative;
+  background-image: cover;
+  width: 100%;
+
+  /* border:100px solid black; */
+}
+
+.reactSlickButton_bestSellerAndNewProduct .slick-slide {
+  box-sizing: border-box;
+  height: 100%;
+
+  /* width:200px; */
+  padding: 10px;
+  margin: 0;
+}
+
+/* .slick-list{
+    display: flex;
+    justify-content: space-around;
+  } */
+
+.reactSlickButton_bestSellerAndNewProduct img {
+  /* border:10px solid black; */
+
+  /* width:200px !important; */
+}

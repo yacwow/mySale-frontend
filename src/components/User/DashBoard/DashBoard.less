@@ -1,0 +1,56 @@
+.board {
+    width: 810px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+
+    li {
+        width: 381px;
+        height:136px;
+        .dashTitle {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1c1c1c;
+            border: 1px solid #dfdfdf;
+
+            a {
+                display: block;
+                text-decoration: none;
+                color: inherit;
+                background: url(/leftIcon.png) no-repeat center right 20px;
+                padding: 18px 10px 16px 10px;
+            }
+        }
+
+        .dashCont {
+            font-size: 12px;
+            color: #4d4d4d;
+            line-height: 1.6;
+            padding: 18px 10px 5px;
+            height: 74px;
+
+            p {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .cartNum {
+            display: block;
+           min-width: 17px;
+            height: 21px;
+            background: #f00;
+           
+            // border-radius: 50%;
+            position: absolute;
+            top: -6px;
+            left: 15px;
+            font-size: 12px;
+            color: #fff;
+            font-style: normal;
+            line-height: 18px;
+            text-align: center;
+        }
+    }
+}

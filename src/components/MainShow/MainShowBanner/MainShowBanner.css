@@ -1,0 +1,38 @@
+.reactSlickButton1 .slick-prev{
+    /* border:1000px solid black; */
+    top:calc(50% - 30px);
+  
+    /* right:10px; */
+    left:-35px;
+    z-index: 999;
+  }
+  .reactSlickButton1 .slick-next{
+    /* border:1000px solid black; */
+    top:calc(50% - 30px);
+  
+    /* right:10px; */
+    right:0px;
+    z-index: 999;
+  }
+  
+  .reactSlickButton1 .slick-prev::before,.reactSlickButton1 .slick-next::before{
+    font-size: 55px;
+    color:black;
+  }
+  
+  
+  .reactSlickButton1 .slick-active{
+    color:black;
+  }
+  
+  .reactSlickButton1{
+    position: relative;
+    background-image: cover;
+    width: 100%;
+  
+    /* border:100px solid black; */
+  }
+  
+  .reactSlickButton1 .slick-slide {
+    height:100%;
+  }

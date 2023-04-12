@@ -1,0 +1,98 @@
+.cateItem {
+    list-style: none;
+    width: 240px;
+    // height: 330px;
+    // border:1px solid red;
+
+    .img {
+        width: 240px;
+        height: 240px;
+        // border: 1px solid black;
+        position: relative;
+
+        .lazy {
+            min-width: 220px;
+            min-height: 220px;
+            width: 240px;
+            height: 240px;
+        }
+    }
+
+    .cateItemData {
+        a {
+            color: black;
+            text-decoration: none;
+        }
+    }
+
+    .omit {
+        margin-bottom: 0;
+        display: flex;
+        justify-content: start;
+        height: 22px;
+        line-height: 22px;
+        font-size: 12px;
+        width: 100%;
+
+
+        .newSaleLabel {
+            background: #ba8b4e;
+            color: #fff;
+            padding: 2px 3px;
+            margin-right: 2px;
+            display: inline-block;
+        }
+
+        .title {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+
+    .price {
+        display: flex;
+        justify-content: center;
+        line-height: 18px;
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .comment {
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .reviewsShow {
+        display: inline-block;
+        background-image: url(/score.png);
+        background-size: 93px 117px;
+        width: 93px;
+        height: 17px;
+        position: relative;
+        top: -2px;
+        vertical-align: middle;
+        overflow: hidden;
+        // border:1px solid yellow;
+        padding-right: 3px;
+    }
+
+    .star5 {
+        background-position: 0 -100px;
+    }
+
+    .star4 {
+        background-position: 0 -80px;
+    }
+
+    .star3 {
+        background-position: 0 -60px;
+    }
+
+    .commentNum {
+        font-size: 12px;
+    }
+}

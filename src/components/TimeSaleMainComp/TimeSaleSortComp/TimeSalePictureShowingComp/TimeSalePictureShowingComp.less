@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width:1200;
+    a{
+        text-decoration: none;
+    }
+    /* 如果最后一行是3个元素 */
+    li:last-child:nth-child(4n + 3) {
+        // border:10px solid black;
+        margin-right: calc(25.5%);
+        // margin-right: calc(48% + 8% / 3);
+    }
+
+    /* 如果最后一行是2个元素 */
+    li:last-child:nth-child(4n + 2) {
+        // border:10px solid black;
+        margin-right: calc(51%);
+    }
+
+}

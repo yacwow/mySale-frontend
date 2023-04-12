@@ -1,0 +1,89 @@
+.container{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    // margin:0,auto;
+    // width:1500px;
+    // border:10px solid yellow;
+    .top{
+        // width: 1500px;
+        width:100%;
+        // min-width: 1300px;
+        margin:0 auto;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        border-width: 100vw;
+        justify-content: center;
+
+        .left{
+            // border:1px solid black;
+            width:600px;
+            text-align: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-shrink: 1;
+            input{
+                vertical-align: top;
+                padding:0;
+                box-sizing: border-box;
+                width:450px;
+                height:60px;
+                line-height: 30px;
+                border:3px solid #EFE3CF;
+                font-size:24px ;
+            }
+
+            button{
+                border:none;
+                padding:0;
+                box-sizing: border-box;
+                background-color: #EFE3CF;
+                font-size:24px ;
+                cursor: pointer;
+                width:14%;
+                height:60px;
+                line-height: 40px;
+            }
+
+            ul{
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                list-style: none;
+
+                img{
+                    padding-right:30px;
+                    width:35px;
+                    height:35px;
+                }
+            }
+        
+        }
+
+        .right{
+            padding-bottom: 30px;
+            width:650px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            display: flex;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+
+            a{
+                text-decoration: none;
+                color:black;
+                font-size: 14px;
+                font-weight: 400;
+            }
+
+            dt{
+                margin-bottom: 12px;
+            }
+        }
+    }
+}
+
+.bottom{
+    text-align: center;
+}

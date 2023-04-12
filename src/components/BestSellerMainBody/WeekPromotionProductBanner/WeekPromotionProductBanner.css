@@ -1,0 +1,33 @@
+.sliderForWeekPromotion .slick-next, .sliderForWeekPromotion .slick-prev{
+    width:55px;
+    height:55px;
+  
+    /* background-color: black; */
+    position :absolute;
+  
+    /* border:10px solid black; */
+    z-index: 99999;
+  }
+  
+  .sliderForWeekPromotion .slick-next{
+    top:calc(50% + 20px);
+    right:0;
+  }
+  
+  .sliderForWeekPromotion .slick-prev{
+    /* border:1000px solid black; */
+    top:calc(50% + 20px);
+  
+    /* right:10px; */
+    left:0;
+    z-index: 999;
+  }
+  
+   .slick-prev::before, .slick-next::before{
+    font-size: 55px;
+    color:black;
+  }
+
+  .sliderForWeekPromotion{
+    position: relative;
+  }

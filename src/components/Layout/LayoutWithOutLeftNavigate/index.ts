@@ -1,0 +1,2 @@
+import LayoutWithOutLeftNavigate from './LayoutWithOutLeftNavigate'
+export default LayoutWithOutLeftNavigate;

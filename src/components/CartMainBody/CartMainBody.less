@@ -1,0 +1,312 @@
+.container {
+    width: 1070px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+    .header {
+        padding-left: 10px;
+
+        a {
+            text-decoration: none;
+            color: #b97329;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        span {
+            padding: 3px;
+            font-size: 12px;
+        }
+    }
+
+    .body {
+        th {
+            font-size: 15px;
+            color: #868686;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #F6F6F6;
+            padding: 12px 0 10px 0;
+
+            &:nth-child(1) {
+                width: 420px;
+            }
+
+            &:nth-child(2) {
+                width: 120px;
+            }
+
+            &:nth-child(3) {
+                width: 170px;
+            }
+
+            &:nth-child(4) {
+                width: 120px;
+            }
+        }
+
+        tr {
+            a {
+                text-decoration: none;
+                color: black;
+            }
+
+            td {
+                vertical-align: middle;
+                padding: 15px;
+                border-bottom: 1px dotted #b0b0b0;
+
+                .cartItem {
+                    display: table;
+                }
+
+                .item {
+                    display: table-cell;
+                    vertical-align: top;
+                    padding-right: 20px;
+                    width: 98px;
+
+                    img {
+                        // display: block;
+                        width: 78px;
+                    }
+
+                }
+
+                .itemData {
+                    width: 300px;
+                    // border:1px solid red;
+                    font-size: 12px;
+
+                    p {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    .timesale {
+                        background: #ba8b4e !important;
+                        line-height: 15px !important;
+                        padding: 2px 3px !important;
+                        font-size: 12px !important;
+                        color: #fff;
+                    }
+                }
+
+                .price {
+                    font-size: 16px;
+                    color: #4d4d4d;
+                }
+
+                .itemAmount {
+                    width: 140px;
+                    box-sizing: border-box;
+                    font-size: 13px;
+                    text-align: right;
+
+                    border-radius: 3px;
+                    text-align: center;
+                    display: flex;
+                    justify-content: space-between;
+
+                    // .itemNumberChange {
+                    //     border: 1px solid #cdcdcd;
+                    //     border-radius: 3px;
+                    //     width: 60px;
+                    //     height: 27px;
+                    //     text-align: center;
+                    // }
+
+                    .cartNumBtnDel {
+                        height:30px;
+                        margin-left: 4px;
+                        border:1px solid;
+                        border-radius: 3px;
+                    }
+                }
+            }
+        }
+    }
+
+    .bottom {
+        .cartCollaterals {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            margin-right: -15px;
+            margin-left: -15px;
+            display: flex;
+            justify-content: space-between;
+            // border: 1px solid red;
+
+            .colSm6 {
+                width: 49%;
+
+                h3 {
+                    font-size: 14px;
+                    color: #000;
+                    margin-bottom: 15px;
+                    border-bottom: 1px solid #aaa;
+                    padding: 10px 0;
+                    text-transform: uppercase;
+                    margin-top: auto;
+                    letter-spacing: 0.5px;
+                    font-weight: 700;
+
+                    b {
+                        font-size: 18px;
+                        color: #d92b04;
+                    }
+                }
+
+                .discountCoupon {
+                    p {
+                        padding: 0;
+                        margin: 0;
+                        font-size: 12px;
+                    }
+
+                    input {
+                        padding: 10px;
+                        width: 75%;
+                        outline: none;
+                        color: #aaa;
+                        background: #fff;
+                        border: 1px solid #f0f0f0;
+                    }
+
+                    .couponBtn {
+                        width: 18%;
+                        padding: 11px !important;
+                        color: #fff;
+                        border: none;
+                        background: #E3BA84;
+                    }
+                }
+
+                .couponList {
+                    // background: #F9ECD9;
+                    // border: 10px solid red;
+                }
+
+                .couponLabel {
+                    position: relative;
+                    margin-bottom: 10px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 5%;
+                    color: #9B9B9B;
+                    background: #EAEAEA;
+                    font-weight: 500;
+                }
+
+                .active {
+                    color: #E0A353;
+                    position: relative;
+                    cursor: pointer;
+                    margin-bottom: 10px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 5%;
+                    background: #EAEAEA;
+                    font-weight: 500;
+                    background: #F9ECD9;
+
+                    .dappDept {
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        // border: 10px solid red;
+                        border: 1px solid #9B9B9B !important;
+                        vertical-align: middle;
+                        width: 16px !important;
+                        height: 16px !important;
+                        outline: none !important;
+                        border-radius: 50% !important;
+                        z-index: 9;
+                        padding: 0 !important;
+
+                        &.dappDeptActive {
+                            border: none !important;
+                            background: url(/correct.png) #F9ECD9 no-repeat !important;
+                            background-size: contain !important;
+                        }
+                    }
+                }
+
+
+            }
+
+            .totals {
+                width: 49%;
+                font-size: 12px;
+                .inner{
+                    padding: 4px 0px 15px 0px;
+                    background-color: #fff;
+                    margin-top: 0px;
+                }
+                .table{
+                    text-align: center;
+                    float: right;
+                    width: 100%;
+                    padding-bottom: 8px;
+                    border-bottom: 1px solid #aaa;
+                    border-top: 1px solid #aaa;
+                    margin: 20px 0;
+                    td{
+                        padding: 5px;
+                        border: none;
+                        background: none;
+                        border: medium none;
+                        box-shadow: none;
+                        color: #333;
+                    }
+                }
+                .price{
+                    font-size: 14px;
+                    color: #d92b04;
+                }
+                .cartDiscount{
+                    background: #EEEEEE;
+                    clear: both;
+                    padding: 10px;
+                    overflow: hidden;
+                    margin-top: 10px;
+                    a{
+                        // display: inline-block;
+                        margin: 10px 0;
+                        float: right;
+                        text-decoration: underline;
+                        color:black;
+                    }
+                }
+                .cartBoxBtn{
+                    cursor: pointer;
+                    color: #666666;
+                    padding-top: 5px;
+                    text-align: center;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    clear: both;
+                    .indexLoginBtn{
+                        display: block;
+                        font-size: 15px;
+                        color: #fff;
+                        text-align: center;
+                        text-decoration: none;
+                        background: #E3BA84;
+                        padding: 10px 0;
+                        margin: 40px auto;
+                        border-radius: 15px;
+                        border: 1px solid #E3BA84;
+                        width:500px;
+                    }
+                }
+            }
+        }
+    }
+}

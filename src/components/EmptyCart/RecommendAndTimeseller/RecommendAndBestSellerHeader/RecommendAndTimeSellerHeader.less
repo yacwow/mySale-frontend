@@ -1,0 +1,37 @@
+.container{
+    margin:0 auto;
+    // border: 1px solid black;
+    min-width: 1000px;
+    width:100%;
+    background-color: #f2ede4;
+
+    .active{
+        background-color: #efe3cf;
+        color:rgb(27 148 204);
+    }
+
+    .itemRanking{
+        padding:0;
+        display: flex;
+
+        li{
+            flex-grow: 1;
+            width:134px;
+            list-style: none;
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+            height:40px;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            & .active{
+                background-color: white;
+                font-size: 100px;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,2 @@
+import FullyParamPictureWithoutComment from './FullyParamPictureWithoutComment'
+export default FullyParamPictureWithoutComment;

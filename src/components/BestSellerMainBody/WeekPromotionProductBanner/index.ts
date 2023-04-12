@@ -1,0 +1,2 @@
+import WeekPromotionProductBanner from './WeekPromotionProductBanner'
+export default WeekPromotionProductBanner;

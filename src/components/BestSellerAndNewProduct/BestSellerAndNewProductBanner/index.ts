@@ -1,0 +1,2 @@
+import BestSellerAndNewProductBanner from './BestSellerAndNewProductBanner'
+export default BestSellerAndNewProductBanner;

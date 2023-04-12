@@ -1,0 +1,138 @@
+.container {
+    display: block;
+    width: 280px;
+    height: 509px;
+    text-decoration: none;
+    color: black;
+    // border:10px solid red;
+
+    .header {
+        position: relative;
+        overflow: hidden;
+        width: 280px;
+        height: 280px;
+
+        .main {
+            width: 270px;
+            height: 270px;
+            object-fit: cover;
+            padding: 5px;
+            min-width: 270px;
+            min-height: 270px;
+        }
+
+        .discount {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 30%;
+            z-index: 2;
+            height: auto;
+        }
+
+        .secondHalf {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 100px;
+            z-index: 2;
+            height: auto;
+        }
+    }
+
+    .mainBody {
+        display: flex;
+        width: 260px;
+        margin: 0 auto;
+
+        .smallImg {
+            width: 55px;
+            height: 55px;
+            min-width: 55px;
+            min-height: 55px;
+            margin-right: 5px;
+            display: block;
+        }
+    }
+
+    .context {
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .price {
+            span:nth-child(1) {
+                font-size: 27px;
+                font-family: Yu Gothic;
+                font-weight: bold;
+                color: #ba8b4e;
+            }
+
+            span:nth-child(2) {
+                font-size: 14px;
+                font-family: Yu Gothic;
+                font-weight: bold;
+                color: #ba8b4e;
+            }
+
+            .oldPrice {
+                span:nth-child(1) {
+                    font-size: 14px;
+                    font-family: Yu Gothic;
+                    font-weight: bold;
+                    color: #838383;
+                    text-decoration: line-through;
+                    margin-right: 3px;
+                }
+
+                span:nth-child(2) {
+                    font-size: 12px;
+                    font-family: Yu Gothic;
+                    font-weight: bold;
+                    color: #838383;
+                    text-decoration: line-through;
+                }
+            }
+
+        }
+
+        .limit {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+
+            span {
+                font-size: 14px;
+                font-family: Yu Gothic;
+                font-weight: 500;
+                color: #4D4D4D;
+            }
+        }
+
+        .progress {
+            position: relative;
+            height: 6px;
+            background: #E1E1E1;
+            margin: 11px 0 16px;
+
+            i {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                background: #ba8b4e;
+            }
+        }
+        .btn{
+                font-size: 16px;
+                text-align: center;
+                font-family: Oxford Wd;
+                font-weight: bold;
+                color: #FFFFFF;
+                height: 51px;
+                line-height: 51px;
+                background: #ba8b4e;
+        }
+    }
+}

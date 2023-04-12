@@ -1,0 +1,2 @@
+import TimeSalePictureShowingComp from './TimeSalePictureShowingComp'
+export default TimeSalePictureShowingComp;
