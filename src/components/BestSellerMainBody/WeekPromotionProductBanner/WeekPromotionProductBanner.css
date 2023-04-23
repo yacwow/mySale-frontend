@@ -21,12 +21,13 @@
     /* right:10px; */
     left:0;
     z-index: 999;
+    /* content: "none" !important; */
   }
   
-   .slick-prev::before, .slick-next::before{
+   /* .slick-prev::before, .slick-next::before{
     font-size: 55px;
     color:black;
-  }
+  } */
 
   .sliderForWeekPromotion{
     position: relative;

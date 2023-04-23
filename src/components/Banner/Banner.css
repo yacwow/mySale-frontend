@@ -52,6 +52,16 @@
   width: 60px;
 }
 
+.slick-prev:hover {
+  background: url('/rightArrow.png') no-repeat;
+  width: 60px;
+}
+
+.slick-next:hover {
+  background: url('/leftArrow.png') no-repeat;
+  width: 60px;
+}
+
 .reactSlickButton .slick-dots {
   position: absolute;
   bottom: 20px;

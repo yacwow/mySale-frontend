@@ -8,7 +8,7 @@ interface Props {
     href: string,
     title: string,
     imgSrc: string,
-    newProduct?: boolean,
+    newProduct?: number,
     discount?: boolean,
     secondOneDiscount?: boolean
     price: number,
@@ -20,7 +20,7 @@ interface Props {
 
 }
 const App: React.FC<Props> = (props) => {
-    const { title, href, imgSrc, newProduct = false, discount = false, secondOneDiscount = false,
+    const { title, href, imgSrc, newProduct = 0, discount = false, secondOneDiscount = false,
         price,comment } = props;
     let strPrice = NumToString(price);
 

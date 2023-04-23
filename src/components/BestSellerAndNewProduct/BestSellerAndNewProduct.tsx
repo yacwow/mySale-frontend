@@ -35,7 +35,7 @@ const App: React.FC = () => {
       <div className={styles.pictureWrapper}
         style={{ width: 1500 }}>
         {
-          bestSellerAndNewProductDataList ?
+          bestSellerAndNewProductDataList!==undefined&&bestSellerAndNewProductDataList[selectItem] ?
             <BestSellerAndNewProductBanner dots={false} slidesToShow={5}
               newsBanner={bestSellerAndNewProductDataList[selectItem]} arrows={false} /> : null
         }

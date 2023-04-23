@@ -11,7 +11,7 @@ interface dataType{
     price:number,
     imgSrc:string,
     productDescription:string,
-    newProduct:boolean,
+    newProduct:number,
     secondOneHalf:boolean,
 }
 interface Props {

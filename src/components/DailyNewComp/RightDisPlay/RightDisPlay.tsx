@@ -48,6 +48,7 @@ const App: React.FC<Props> = (props) => {
     console.log(searchParam)
     setRequestParam(searchParam)
     setActiveNum(index)
+    setPage(1)
   }
   // useEffect(() => {
   //   //发送ajax获取所有新品的信息（数量目前未定）

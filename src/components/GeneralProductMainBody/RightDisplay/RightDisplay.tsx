@@ -14,7 +14,7 @@ interface Props {
     setOrder: Dispatch<SetStateAction<string>>,
     dataList: {
         commentNum: number, discount: boolean, href: '', imgSrc: '', price: number,
-        newProduct: boolean, secondOneHalf: boolean, productDescription: string, idProduct: number
+        newProduct: number, secondOneHalf: boolean, productDescription: string, idProduct: number
     }[],
     page: number;
 }
