@@ -1,27 +1,44 @@
 import React from 'react';
 // import { Image } from 'antd';
 import PictureModel from './PictureModel';
-import styles from "./PictureWithModel.less";
+import styles from './PictureWithModel.less';
 //@ts-ignore
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface Props {
-  imgSrc: string,
-  content: string,
-  rank: number,
-  discount?: boolean,
-  href:string
+  imgSrc: string;
+  content: string;
+  rank: number;
+  discount?: number;
+  href: string;
 }
 const App: React.FC<Props> = (props) => {
-  const { imgSrc, content, rank, discount = false,href } = props;
+  const { imgSrc, content, rank, discount = false, href } = props;
   return (
     <a className={styles.container} href={href}>
       <div className={styles.wrapper}>
-          <LazyLoadImage className={styles.backImg} src={imgSrc}  height={600}></LazyLoadImage>
+        <LazyLoadImage
+          className={styles.backImg}
+          src={imgSrc}
+          height={600}
+        ></LazyLoadImage>
         <PictureModel content={content}></PictureModel>
-        {rank > 0 ? rank <= 3 ? <LazyLoadImage src={`rankicon/icon-ran${rank}.png`} className={styles.rank}></LazyLoadImage>
-          : <span className={styles.rankSpan}>{rank}</span> : null}
-        {discount ? <LazyLoadImage src='img/discount.jpg' className={styles.discount}></LazyLoadImage> : null}
+        {rank > 0 ? (
+          rank <= 3 ? (
+            <LazyLoadImage
+              src={`rankicon/icon-ran${rank}.png`}
+              className={styles.rank}
+            ></LazyLoadImage>
+          ) : (
+            <span className={styles.rankSpan}>{rank}</span>
+          )
+        ) : null}
+        {discount ? (
+          <LazyLoadImage
+            src="img/discount.jpg"
+            className={styles.discount}
+          ></LazyLoadImage>
+        ) : null}
       </div>
 
       {/* {bottomLine ? <div className={styles.bottomLine}>
@@ -29,6 +46,6 @@ const App: React.FC<Props> = (props) => {
         <p>{bottomLine.price}</p>
       </div> : null} */}
     </a>
-  )
+  );
 };
 export default App;

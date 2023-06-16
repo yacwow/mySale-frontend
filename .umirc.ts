@@ -23,7 +23,7 @@ export default defineConfig({
   links: [{ rel: 'icon', href: '/img/favicon.jpg' }],
   routes: [
     {
-      name: "人気新作週間ランキング",
+      name: '人気新作週間ランキング',
       path: '/',
       redirect: '/home',
     },
@@ -38,7 +38,7 @@ export default defineConfig({
       component: './FakePayment',
     },
     {
-      name: "人気新作週間ランキング",
+      name: '人気新作週間ランキング',
       path: '/repayment/:id',
       component: './Repayment',
     },
@@ -58,48 +58,63 @@ export default defineConfig({
       component: './SalesPage',
     },
     {
-      name: "人気新作週間ランキング",
+      name: '人気新作週間ランキング',
       path: '/generalSale/:id/*',
       component: './GeneralSale',
     },
     {
-      name: "【期間限定】二点目半額アイテム",
+      name: '【期間限定】二点目半額アイテム',
       path: '/secondHalfPrice',
       component: './SecondHalfPrice',
     },
     {
-      name: "人気新作週間ランキング",
+      name: '人気新作週間ランキング',
       path: '/dailyNew',
       component: './DailyNew',
     },
     {
       name: '用户',
-      path: '/',
+      path: '/account',
 
       routes: [
-        { path: "/account/dashboard", component: './Account' },
-        { path: '/account/favoriteProduct', component: '@/pages/Account/FavoriteProduct' },
-        { path: '/account/invoiceComp/:id', component: '@/pages/Account/InvoiceComp' },
+        { path: '/account/dashboard', component: './Account' },
+        {
+          path: '/account/favoriteProduct',
+          component: '@/pages/Account/FavoriteProduct',
+        },
+        {
+          path: '/account/invoiceComp/:id',
+          component: '@/pages/Account/InvoiceComp',
+        },
         { path: '/account/pointer', component: '@/pages/Account/Pointer' },
-        { path: '/account/shoppingHistory', component: '@/pages/Account/ShoppingHistory' },
-        { path: '/account/userAddress', component: '@/pages/Account/UserAddress' },
-        { path: '/account/userGetPointerMethod', component: '@/pages/Account/UserGetPointerMethod' },
+        {
+          path: '/account/shoppingHistory',
+          component: '@/pages/Account/ShoppingHistory',
+        },
+        {
+          path: '/account/userAddress',
+          component: '@/pages/Account/UserAddress',
+        },
+        {
+          path: '/account/userGetPointerMethod',
+          component: '@/pages/Account/UserGetPointerMethod',
+        },
         { path: '/account/userInfo', component: '@/pages/Account/UserInfo' },
-      ]
+      ],
     },
     {
-      name: "人気新作週間ランキング",
+      name: '人気新作週間ランキング',
       path: '/companyIntroduce',
       component: './CompanyIntroduce',
     },
     {
-      name: "人気新作週間ランキング",
+      name: '人気新作週間ランキング',
       path: '/discount',
       component: './Discount',
     },
 
     {
-      name: "人気新作週間ランキング",
+      name: '人気新作週間ランキング',
       path: '/wearMatch',
       component: './WearMatch',
     },
@@ -121,12 +136,12 @@ export default defineConfig({
     {
       name: '密码恢复',
       path: '/account/passwordRecovery',
-      component: './PasswordRecovery'
+      component: './PasswordRecovery',
     },
     {
       name: '密码恢复',
       path: '/account/reset',
-      component: './PasswordRecovery/Reset'
+      component: './PasswordRecovery/Reset',
     },
     {
       name: 'checkout',
@@ -135,7 +150,7 @@ export default defineConfig({
     },
     {
       name: 'updateAddress',
-      path: '/updateOrAddAddress',
+      path: '/updateOrAddAddress/*',
       component: './UpdateOrAddAddress',
     },
     {
@@ -144,8 +159,6 @@ export default defineConfig({
       component: './Test',
     },
     { path: '/*', component: '@/pages/404' },
-
   ],
   npmClient: 'yarn',
 });
-

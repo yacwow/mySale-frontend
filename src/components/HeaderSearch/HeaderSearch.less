@@ -8,6 +8,10 @@
     z-index: 999999;
     background-color: white;
 
+
+
+
+
     .displayNone {
         display: none;
     }
@@ -19,7 +23,7 @@
 
 
 
-        img {
+        .logo {
             width: 200px;
             height: 65px;
             padding-left: 10px;
@@ -30,37 +34,68 @@
             display: flex;
             align-items: center;
             width: 60%;
-            // .inside{
+
+            // .inside {
             //     vertical-align: top;
             //     display: inline-block;
             //     width: 90%;
             //     border: #EFE3CF solid 2px;
             //     height: 60px;
             // }
+
+            // :global .ant-select-show-search {
+            //     vertical-align: top;
+            //     display: inline-block;
+            //     width: 90%;
+            //     // border: #EFE3CF solid 2px;
+            //     height: 60px;
+            // }
+
+            :global .ant-select-selector {
+                vertical-align: top;
+                display: inline-block;
+                border: #EFE3CF solid 2px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            :global .ant-select-selection-search-input {
+                height: 60px !important;
+                line-height: 60px !important;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
 
         .userInfo {
             width: 220px;
-            height: 65px;
+            height: 83px;
             display: flex;
             justify-content: space-around;
             padding-right: 40px;
+            vertical-align: middle;
+            align-items: center;
 
             .user {
                 width: 150px;
                 height: 65px;
                 position: relative;
+                margin-right: 15px;
 
                 img {
-                    width: 100%;
-                    height: 100%;
+                    width: 150px;
+                    height: 65px;
                     object-fit: cover;
                 }
             }
 
             span {
                 position: absolute;
-                top: 22px;
+                top: 4px;
                 right: 22px;
                 width: 22px;
                 height: 22px;
@@ -70,41 +105,6 @@
                 background: #fff;
                 border-radius: 12px;
             }
-
-            // .user{
-            //     width:130px;
-            //     background-color: rgb(207 233 8);
-            //     position: relative;
-
-            //     .icon{
-            //         font-size: 50px;
-            //         position:absolute;
-            //         left:20px;
-            //         top:10px;
-
-            //     }
-
-            //     .count{
-            //         position:absolute;
-            //         right: 20px;
-            //         top:10px;
-            //         height:22px;
-            //         width:22px;
-            //         border-radius: 50%;
-            //         background-color: white;
-            //         // border:1px solid black;
-            //         // align-items: center;
-            //         text-align: center;
-            //         vertical-align: center;
-
-            //         p{
-            //             margin:0;
-            //             color:red;
-            //             font-size: 6px;
-
-            //         }
-            //     }
-            // }
         }
     }
 

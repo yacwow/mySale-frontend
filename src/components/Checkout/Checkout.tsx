@@ -1,5 +1,5 @@
-import { Button, Form, Input, Select, message } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Button, Form, Input, Select, message, Modal } from 'antd';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import styles from './Checkout.less';
 // import HeaderOfEachComp from '../HeaderOfEachComp';
 import HeaderOfEachComp from './HeaderOfEachComp';
@@ -16,6 +16,7 @@ export interface updateInfoType {
 }
 interface Props {
   userInfo: any;
+  setUserInfo: Dispatch<SetStateAction<any>>;
 }
 const formItemLayout = {
   labelCol: {
@@ -29,7 +30,7 @@ const formItemLayout = {
 //这里需要把数据给后端看对不对，如果对了，就直接跳转到支付页面去了。告知支付页面要付多少钱。不对就通知客户网页异常，八小时后下单，到时候我查看这里错误的异常log
 
 const App: React.FC<Props> = (props) => {
-  const { userInfo } = props; //用户具体信息
+  const { userInfo, setUserInfo } = props; //用户具体信息
   console.log(userInfo);
   const { setNeedUpdateIndex, setInvoiceId, setBackUrl } =
     useModel('invoiceAddress');
@@ -39,7 +40,7 @@ const App: React.FC<Props> = (props) => {
   const [deliveryMethodId, setDeliveryMethodId] = useState(1); //分别对应不同方式快递，不能为空，1,2,3分别为ems，iexpress，normal
   const [updatedInfo, setUpdatedInfo] = useState<updateInfoType | undefined>(); //支付后台所需的其他信息 pid，size，color，amount,totalPmt
   // const [needUpdate, setNeedUpdate] = useState(false)//通知下面，可以提交了
-  const [postcode, setPostcode] = useState(''); //邮编
+  const [postcode, setPostcode] = useState<number>(); //邮编
   const [postStatus, setPostStatus] = useState(true); //判断邮编是否正确
   const [selectedAddress, setSelectedAddress] = useState(0); //控制第几个,用于全部信息都有的时候，几条不同地址的选择
   const [cityStatus, setCityStatus] = useState(true);
@@ -57,6 +58,8 @@ const App: React.FC<Props> = (props) => {
     useState(0);
   const [disabled, setDisabled] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const [deleteIndex, SetDeleteIndex] = useState<number>(); //具体删除的是哪个
+  const [open, setOpen] = useState(false); //MODAL
   const failed = () => {
     messageApi.open({
       type: 'error',
@@ -67,21 +70,36 @@ const App: React.FC<Props> = (props) => {
       },
     });
   };
-  // const handleRequest = (params: { orderData: boolean, cartListData: boolean }) => {
-  //     request("/api/secure/getCheckOutProductData", { params }).then(data => {
-  //         if (data.result) {
-  //             localStorage.setItem("orderData", JSON.stringify(data.data.orderData));
-  //             localStorage.setItem("cartList", JSON.stringify(data.data.cartListData));
-  //             setCheckoutTotalData(data.data.cartListData)
-  //             setCheckoutTotal(data.data.orderData)
-  //             setShowedNormalDeliveryAmount(data.data.orderData.deliveryAmount);
-  //             setDeliveryAmount(data.data.orderData.deliveryAmount)
-  //         } else {
-  //             history.push('/cart')
-  //         }
-  //     })
-
-  // }
+  //控制modal打开关闭
+  const showModal = async (e: any, index: number) => {
+    await SetDeleteIndex(index);
+    e.stopPropagation();
+    e.preventDefault();
+    setOpen(true);
+  };
+  const hideModal = (e: any) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setOpen(false);
+  };
+  //删除一个用户地址
+  const deleteOneAddress = (id: number) => {
+    request(`/api/secure/deleteOneproduct/${id}`).then((data) => {
+      if (data.result) {
+        if (!userInfo) return;
+        let address = [];
+        for (let i = 0; i < userInfo.address.length; i++) {
+          if (userInfo?.address[i].invoiceId !== id) {
+            address.push(userInfo.address[i]);
+          }
+        }
+        let newUser = structuredClone(userInfo);
+        newUser.address = address;
+        setUserInfo(newUser);
+      }
+      setOpen(false);
+    });
+  };
   useEffect(() => {
     if (userInfo.fullAddress) {
       setShowPart(1); //数据全的
@@ -136,7 +154,7 @@ const App: React.FC<Props> = (props) => {
       paymentMethod,
       needUpdateAddress: true,
     };
-    console.log(params);
+    // console.log(params);
     //先设置提交的button为disabled
     setDisabled(true);
     request('/api/secure/createInvoice', {
@@ -157,11 +175,11 @@ const App: React.FC<Props> = (props) => {
           //用户的那个invoicenumber的state要加一，cart的number要归零
           setInvoiceNum(invoiceNum + 1);
           setNum(0);
-          // //跳转到主页/timeseller
-          // history.push("/timeseller")
+          //跳转到payment
+          history.push('/fakePayment');
         }
       })
-      .catch((e) => {
+      .catch(() => {
         //提交按钮又可以用了，然后提示网络异常，重新提交
         setDisabled(false);
         failed();
@@ -215,34 +233,29 @@ const App: React.FC<Props> = (props) => {
   };
   //邮编input事件
   const handleBlur = (e: any) => {
-    request(`/api/getAddress/${e.target.value.trim()}`).then(
-      (serverSideData) => {
-        if (serverSideData.result === false) {
-          setPostStatus(false);
-          return;
-        }
-        const { data } = serverSideData;
-        // console.log(data,serverSideData);
-        // setProvince(data.province);
-        form.setFieldValue('province', data.province);
-        form.setFieldValue('address', data.area);
-        form.setFieldValue('city', data.city);
-        // setAddress(data.area);
-        // setCity(data.city);
-        setCityData(data.newCityList);
-        setAddressData(data.newAreaList);
-        setCityStatus(false);
-        setAddressStatus(false);
-        setPostStatus(true);
-      },
-    );
+    request(`/api/getAddress/${e.target.value.trim()}`).then((data) => {
+      if (data.result === false) {
+        setPostStatus(false);
+        return;
+      }
+      form.setFieldValue('province', data.data.province);
+      form.setFieldValue('area', data.data.area);
+      form.setFieldValue('city', data.data.city);
+      // setAddress(data.area);
+      // setCity(data.city);
+      setCityData(data.data.cityList);
+      setAddressData(data.data.areaList);
+      setCityStatus(false);
+      setAddressStatus(false);
+      setPostStatus(true);
+    });
   };
 
   //用于处理请求地址
   const handleFieldsChange = (changedFields: any, allFields: any) => {
     if (!changedFields) return; //好像修改代码时候会出问题，加一行吧
     if (changedFields[0]?.name[0] === 'province') {
-      form.setFieldValue('address', '');
+      form.setFieldValue('area', '');
       form.setFieldValue('city', '');
       setCityStatus(false);
       setAddressStatus(true);
@@ -250,26 +263,32 @@ const App: React.FC<Props> = (props) => {
       request(`api/getCityList/${changedFields[0].value}`).then((data) => {
         // setCityStatus(false);
         // console.log(data);
-        setCityData(data);
+        if (data.result) {
+          setCityData(data.data.cityList);
+        }
       });
     } else if (changedFields[0]?.name[0] === 'city') {
-      form.setFieldValue('address', '');
+      form.setFieldValue('area', '');
       request(`api/getAddressList/${changedFields[0].value}`).then((data) => {
-        setAddressStatus(false);
-        // console.log(data);
-        setAddressData(data);
+        if (data.result) {
+          setAddressStatus(false);
+          setAddressData(data.data.areaList);
+        }
       });
-    } else if (changedFields[0]?.name[0] === 'address') {
-      // console.log(allFields[8].value,allFields[9],allFields[10])
+    } else if (changedFields[0]?.name[0] === 'area') {
+      console.log(allFields[7].value, allFields[8].value, allFields[9].value);
+      //注意这里和mobile的fields的index不一样，mobile删了一个form.item
       request(
         `api/getPostCode/${allFields[8].value}/${allFields[9].value}/${allFields[10].value}`,
       ).then((data) => {
-        setPostcode(data[0]);
+        if (data.result) {
+          setPostcode(+data.data.postCode);
+        }
       });
     }
   };
   const handlePostcodeChange = (e: any) => {
-    setPostcode(e.target.value);
+    setPostcode(+e.target.value);
   };
 
   //具体地址选择
@@ -312,33 +331,91 @@ const App: React.FC<Props> = (props) => {
           >{`${item.firstName} ${item.lastName}`}</td>
           <td
             className={styles.center}
-            style={{ width: '57%' }}
+            style={{ width: '47%' }}
           >{`${item.country},${item.province},${item.city},${item.area},${item.detailAddress},${item.mobilePhone},${item.postcode}`}</td>
           <td
             style={{
               textAlign: 'center',
               verticalAlign: 'middle',
-              width: '10%',
+              width: '20%',
             }}
           >
-            <Button
-              onClick={async () => {
-                await setNeedUpdateIndex(index);
-                await setInvoiceId(item.invoiceId);
-                setBackUrl('/checkout');
-                history.push('/updateOrAddAddress');
-              }}
-              style={{ color: '#89a9d2', fontWeight: 'bold' }}
-            >
-              内容変更
-            </Button>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button
+                onClick={(e) => {
+                  showModal(e, index);
+                }}
+                style={{ color: '#ff4400', fontWeight: 'bold', marginRight: 5 }}
+              >
+                削除します
+              </Button>
+              <Button
+                onClick={() => {
+                  setBackUrl('/checkout');
+                  localStorage.setItem('backUrl', '/checkout');
+                  history.push(`/updateOrAddAddress/${item.invoiceId}`);
+                }}
+                style={{ color: '#89a9d2', fontWeight: 'bold' }}
+              >
+                内容変更
+              </Button>
+            </div>
           </td>
         </tr>
       );
     });
     return (
       <>
-        {' '}
+        {deleteIndex !== undefined ? (
+          <Modal
+            className={styles.modal}
+            open={open}
+            title="変更先を削除しますか?"
+            style={{ top: '40vh' }}
+            closable={false}
+            footer={null}
+          >
+            <div className={styles.context}>{}</div>
+            <li className={styles.oneList}>
+              <label>
+                <div className={styles.text}>
+                  <p className={styles.userName}>
+                    名前: {userInfo.address[deleteIndex].firstName} ,{' '}
+                    {userInfo.address[deleteIndex].lastName}
+                  </p>
+                  <p>郵便番号 : {userInfo.address[deleteIndex].postcode}</p>
+                  <p>電話番号 : {userInfo.address[deleteIndex].mobilePhone}</p>
+                  <p>
+                    住所 : {userInfo.address[deleteIndex].country}{' '}
+                    {userInfo.address[deleteIndex].province}{' '}
+                    {userInfo.address[deleteIndex].city}{' '}
+                    {userInfo.address[deleteIndex].area};
+                    {userInfo.address[deleteIndex].detailAddress}
+                  </p>
+                </div>
+              </label>
+            </li>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                marginTop: '4rem',
+              }}
+            >
+              <Button
+                onClick={() => {
+                  deleteOneAddress(userInfo.address[deleteIndex].invoiceId);
+                }}
+                type="primary"
+              >
+                確定です
+              </Button>
+              <Button onClick={hideModal} className={styles.close} style={{}}>
+                取り消します
+              </Button>
+            </div>
+          </Modal>
+        ) : null}
         <table
           className={styles.table}
           style={{
@@ -360,9 +437,8 @@ const App: React.FC<Props> = (props) => {
         >
           <div
             onClick={async () => {
-              await setNeedUpdateIndex(-1);
-              await setInvoiceId(-1);
               setBackUrl('/checkout');
+              localStorage.setItem('backUrl', '/checkout');
               history.push('/updateOrAddAddress');
             }}
             style={{ color: 'red', fontSize: 12, paddingLeft: 55 }}
@@ -634,15 +710,24 @@ const App: React.FC<Props> = (props) => {
               },
             ]}
           >
-            <Select disabled={cityStatus}>
-              {cityData?.map((item, index: number) => {
-                return (
-                  <Select.Option key={index} value={item}>
-                    {item}
-                  </Select.Option>
-                );
-              })}
-            </Select>
+            {cityData ? (
+              <Select
+                disabled={cityStatus}
+                className={styles.twoLine}
+                size="large"
+                notFoundContent={cityData.length === 0 ? 'データなし' : null}
+              >
+                {cityData.length > 0
+                  ? cityData.map((item, index: number) => {
+                      return (
+                        <Select.Option key={index} value={item}>
+                          {item}
+                        </Select.Option>
+                      );
+                    })
+                  : null}
+              </Select>
+            ) : null}
             {/* <div  >
                         <select style={{
                             margin: 0, padding: '3px 7px', width: '100%', height: '100%',
@@ -659,7 +744,7 @@ const App: React.FC<Props> = (props) => {
           </Form.Item>
           <Form.Item
             style={{ width: 400 }}
-            name="address"
+            name="area"
             label="町"
             rules={[
               {
@@ -668,17 +753,27 @@ const App: React.FC<Props> = (props) => {
               },
             ]}
           >
-            {
-              <Select disabled={addressStatus}>
-                {addressData?.map((item, index: number) => {
-                  return (
-                    <Select.Option key={index} value={item}>
-                      {item}
-                    </Select.Option>
-                  );
-                })}
+            {addressData ? (
+              <Select
+                dropdownStyle={{
+                  minWidth: '50rem',
+                }}
+                disabled={addressStatus}
+                className={styles.twoLine}
+                size="large"
+                notFoundContent={addressData.length === 0 ? 'データなし' : null}
+              >
+                {addressData.length > 0
+                  ? addressData.map((item, index: number) => {
+                      return (
+                        <Select.Option key={index} value={item}>
+                          {item}
+                        </Select.Option>
+                      );
+                    })
+                  : null}
               </Select>
-            }
+            ) : null}
             {/* <div  >
                         <select style={{
                             margin: 0, padding: '3px 7px', width: '100%', height: '100%',
@@ -713,8 +808,10 @@ const App: React.FC<Props> = (props) => {
     <div>
       {contextHolder}
       <HeaderOfEachComp imgSrc="/emailCheckout.png" title="お届け先" />
-      {showPart === 1 ? buildTrListIfHasDetail() : null}
-      {showPart === 2 ? buildForm() : null}
+      {userInfo.fullAddress && userInfo.address.length > 0
+        ? buildTrListIfHasDetail()
+        : buildForm()}
+
       {showPart === -1 ? null : (
         <>
           <DeliveryMethod
